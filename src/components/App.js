@@ -16,17 +16,15 @@ function App() {
       style={{ minHeight: "100vh" }}
     >
       <div className="w-100" style={{ maxWidth: "400px" }}>
-        <Router>
-          <AuthProvider>
-            <Switch>
-              <Route path="/" component={Login} exact />
-              <Route path="/signup" component={Signup} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <PrivateRoute path="/dashboard" component={Dashboard} />
-              <PrivateRoute path="/update-profile" component={UpdateProfile} />
-            </Switch>
-          </AuthProvider>
-        </Router>
+        <AuthProvider>
+          <Switch>
+            <Route path="/" component={Login} exact />
+            <Route path="/signup" component={Signup} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          </Switch>
+        </AuthProvider>
       </div>
     </Container>
   )
