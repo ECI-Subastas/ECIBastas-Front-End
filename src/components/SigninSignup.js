@@ -14,22 +14,24 @@ const LandingPage = props => {
     const roleSignupRef = useRef()
     const emailSignInRef = useRef()
     const passwordSignInRef = useRef()
+    const containerRef = React.createRef()
     const { signup } = useAuth()
     const { login } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const [isContainerActive, setIsContainerActive] = React.useState(false)
     const history = useHistory()
 
     const signUpButton = async () => {
-        setIsContainerActive(false)
+        const containerNode = containerRef.current
+        containerNode.classList.add("right-panel-active")
     }
 
     const signInButton = async () => {
-        setIsContainerActive(true)
+        const containerNode = containerRef.current
+        containerNode.classList.remove("right-panel-active")
     }
 
-    const loginEvent = async () => {
+    const signInEvent = async () => {
         try {
             setError("")
             setLoading(true)
@@ -51,7 +53,7 @@ const LandingPage = props => {
 
             await signup(emailSignupRef.current.value, passwordSignupRef.current.value)
 
-            axios.post("https://ecibastas-app.herokuapp.com/createNewUser", {
+            axios.post("https://ecibastas-app.herokuapp.com/user/createNewUser", {
                 nickname: nicknameSignupRef.current.value,
                 fullName: fullNameSignupRef.current.value,
                 email: emailSignupRef.current.value,
@@ -66,28 +68,30 @@ const LandingPage = props => {
             setError("Error during user register.")
         }
 
+        history.push("/")
+
         setLoading(false)
     }
 
     return(
-        <div class="container" id="container">
+        <div class="container" id="container" ref={containerRef}>
             <div class="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
-                    <input type="text" placeholder="Nickname" ref={nicknameSignupRef} />
-                    <input type="text" placeholder="Full Name" ref={fullNameSignupRef} />
-                    <input type="text" placeholder="Phone Number" ref={phoneSignupRef} />
-                    <input type="email" placeholder="Email" ref={emailSignupRef} />
-                    <input type="password" placeholder="Password" ref={passwordSignupRef} />
-                    <button>Sign Up</button>
+                    <input type="text" placeholder="Nickname" ref={nicknameSignupRef} maxLength="100" required />
+                    <input type="text" placeholder="Full Name" ref={fullNameSignupRef} maxLength="100" required />
+                    <input type="text" placeholder="Phone Number" ref={phoneSignupRef} minLength="10" maxLength="10" required />
+                    <input type="email" placeholder="Email" ref={emailSignupRef} maxLength="100" required />
+                    <input type="password" placeholder="Password" ref={passwordSignupRef} required />
+                    <button type="submit" onClick={signupEvent}>Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form action="#">
                     <h1>Sign in</h1>
-                    <input type="email" placeholder="Email" ref={emailSignInRef} />
-                    <input type="password" placeholder="Password" ref={passwordSignInRef} />
-                    <button>Sign In</button>
+                    <input type="email" placeholder="Email" ref={emailSignInRef} required />
+                    <input type="password" placeholder="Password" ref={passwordSignInRef} required />
+                    <button type="submit" onClick={signInEvent}>Sign In</button>
                 </form>
             </div>
             <div class="overlay-container">
@@ -95,12 +99,12 @@ const LandingPage = props => {
                     <div class="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p>
-                        <button class="ghost" id="signIn">Sign In</button>
+                        <button class="ghost" id="signIn" onClick={signInButton}>Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us.</p>
-                        <button class="ghost" id="signUp">Sign Up</button>
+                        <button class="ghost" id="signUp" onClick={signUpButton}>Sign Up</button>
                     </div>
                 </div>
             </div>
