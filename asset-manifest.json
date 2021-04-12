@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/ECIBastas-Front-End/static/js/main.ef6c54df.chunk.js",
-    "main.js.map": "/ECIBastas-Front-End/static/js/main.ef6c54df.chunk.js.map",
+    "main.css": "/ECIBastas-Front-End/static/css/main.47e99246.chunk.css",
+    "main.js": "/ECIBastas-Front-End/static/js/main.063a6299.chunk.js",
+    "main.js.map": "/ECIBastas-Front-End/static/js/main.063a6299.chunk.js.map",
     "runtime-main.js": "/ECIBastas-Front-End/static/js/runtime-main.4c7f246e.js",
     "runtime-main.js.map": "/ECIBastas-Front-End/static/js/runtime-main.4c7f246e.js.map",
-    "static/css/2.4c97ca4f.chunk.css": "/ECIBastas-Front-End/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.911be60f.chunk.js": "/ECIBastas-Front-End/static/js/2.911be60f.chunk.js",
-    "static/js/2.911be60f.chunk.js.map": "/ECIBastas-Front-End/static/js/2.911be60f.chunk.js.map",
+    "static/js/2.541fb2bb.chunk.js": "/ECIBastas-Front-End/static/js/2.541fb2bb.chunk.js",
+    "static/js/2.541fb2bb.chunk.js.map": "/ECIBastas-Front-End/static/js/2.541fb2bb.chunk.js.map",
     "index.html": "/ECIBastas-Front-End/index.html",
-    "static/css/2.4c97ca4f.chunk.css.map": "/ECIBastas-Front-End/static/css/2.4c97ca4f.chunk.css.map",
-    "static/js/2.911be60f.chunk.js.LICENSE.txt": "/ECIBastas-Front-End/static/js/2.911be60f.chunk.js.LICENSE.txt"
+    "static/css/main.47e99246.chunk.css.map": "/ECIBastas-Front-End/static/css/main.47e99246.chunk.css.map",
+    "static/js/2.541fb2bb.chunk.js.LICENSE.txt": "/ECIBastas-Front-End/static/js/2.541fb2bb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4c7f246e.js",
-    "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.911be60f.chunk.js",
-    "static/js/main.ef6c54df.chunk.js"
+    "static/js/2.541fb2bb.chunk.js",
+    "static/css/main.47e99246.chunk.css",
+    "static/js/main.063a6299.chunk.js"
   ]
 }
