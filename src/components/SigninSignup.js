@@ -4,6 +4,9 @@ import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
 import "../css/signin-signup-style.css"
+import logo from "../images/logo.png"
+import logo2 from "../images/logo2.png"
+
 
 const LandingPage = props => {
     const nicknameSignupRef = useRef()
@@ -97,11 +100,13 @@ const LandingPage = props => {
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
+                        <img src={logo2} />
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p>
                         <button class="ghost" id="signIn" onClick={signInButton}>Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
+                        <img src={logo} />
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us.</p>
                         <button class="ghost" id="signUp" onClick={signUpButton}>Sign Up</button>
