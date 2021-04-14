@@ -1,5 +1,4 @@
 import React from "react"
-import { Container } from "react-bootstrap"
 import { AuthProvider } from "../contexts/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Dashboard from "./Dashboard"
@@ -12,7 +11,7 @@ function App() {
   return (
     <AuthProvider>
       <Switch>
-        <Route path="/" component={LandingPage} exact />
+        <Route exact path="/" component={LandingPage} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/update-profile" component={UpdateProfile} />

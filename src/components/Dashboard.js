@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
@@ -19,8 +19,8 @@ export default function Dashboard() {
     }
   }
 
-  return (
-    <>
+  /**
+   * <>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
@@ -37,5 +37,25 @@ export default function Dashboard() {
         </Button>
       </div>
     </>
+  */
+
+    /*
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span class="badge badge-pill bg-danger">1</span>
+              <span><i class="fas fa-shopping-cart"></i></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>*/
+
+  return (
+    <Navbar bg="light">
+      <Navbar.Brand>Brand Link</Navbar.Brand>
+    </Navbar>
   )
 }
