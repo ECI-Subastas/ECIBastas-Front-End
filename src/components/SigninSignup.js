@@ -107,12 +107,12 @@ const LandingPage = props => {
                             <button class="button ghost" id="signIn" onClick={signInButton}>Sign In</button>
                         </div>
                         <div class="overlay-panel overlay-right">
+                            <img src={logo} />
                             <h1 class="h1">Hello, Friend!</h1>
                             <p class="p">Enter your personal details and start journey with us.</p>
                             <button class="button ghost" id="signUp" onClick={signUpButton}>Sign Up</button>
                         </div>
                     </div>
-                        <img src={logo} />
                 </div>
             </div>
         </div>
