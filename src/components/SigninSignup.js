@@ -43,6 +43,8 @@ const LandingPage = (props) => {
         passwordSignInRef.current.value
       );
 
+      localStorage.setItem("userEmail", emailSignInRef.current.value)
+
       console.log(currentUser);
 
       history.push("/dashboard");

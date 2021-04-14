@@ -1,56 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, Button, Card } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Dashboard.css";
 import logoecibastas from "../images/logoecibastas.png";
 import homelogo from "../images/icons/homeicon.png";
-import axios from "axios";
+import hammerLogo from "../images/icons/hammer.svg";
+import Auction from "./Auction";
+import { getAllAuctions } from "./AuctionAPI";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useHistory();
-  const [publications, setPublications] = useState("");
+  var [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function subastasInfo() {
-    try {
-      setError("");
-      setLoading(true);
-      axios
-        .get("https://ecibastas-app.herokuapp.com/subastas")
-        .then((response) => {
-          setLoading(false);
-          console.log(response.data);
-          setPublications(response.data);
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
-        });
-
-      if (publications.lenght > 0) {
-      const publication = publication.map((index, element) => {
-          return (
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>{element.name}</Card.Title>
-                <Card.Text>
-                  {element.creator}
-                </Card.Text>
-                <Button variant="primary">Go to subasta</Button>
-              </Card.Body>
-            </Card>
-          );
-        });
-      }
-
-      //history.push("/");
-    } catch (error) {
-      setError("Error during user register.");
-    }
-  }
+  useEffect(function () {
+    getAllAuctions().then((res) => setPublications(res));
+  });
 
   async function handleLogout() {
     setError("");
@@ -62,6 +30,7 @@ export default function Dashboard() {
       setError("Failed to log out");
     }
   }
+
   async function handleDashboard() {
     setError("");
 
@@ -139,6 +108,21 @@ export default function Dashboard() {
             </li>
           </ul>
 
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <Link to="/create-auction">
+                  <img
+                    src={hammerLogo}
+                    width="40"
+                    height="40"
+                    class="d-inline-block align-top"
+                  />
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           <div></div>
           <div>
             <form class="form-inline my-2 my-lg-0">
@@ -166,9 +150,15 @@ export default function Dashboard() {
           </form>
         </div>
       </nav>
-
+      <div className="overflow-auto h-auto">
+        {publications.map((publication) => (
+          <Auction
+            subastaId={publication.subastaId}
+            name={publication.name}
+            creator={publication.creator}
+          ></Auction>
+        ))}
+      </div>
     </>
   );
-  useEffect(()=>{subastasInfo()},[])
 }
-
