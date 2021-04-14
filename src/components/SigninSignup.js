@@ -6,6 +6,7 @@ import "../css/signin-signup-style.css";
 import logo from "../images/logo.png";
 import logo2 from "../images/logo2.png";
 
+
 const LandingPage = (props) => {
   const nicknameSignupRef = useRef();
   const fullNameSignupRef = useRef();
