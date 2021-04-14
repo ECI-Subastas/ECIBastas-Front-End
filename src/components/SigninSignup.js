@@ -3,6 +3,9 @@ import { useAuth } from "../contexts/AuthContext"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 import "../css/signin-signup-style.css"
+import logo from "../images/logo.png"
+import logo2 from "../images/logo2.png"
+
 
 const LandingPage = props => {
     const nicknameSignupRef = useRef()
@@ -109,6 +112,7 @@ const LandingPage = props => {
                             <button class="button ghost" id="signUp" onClick={signUpButton}>Sign Up</button>
                         </div>
                     </div>
+                        <img src={logo} />
                 </div>
             </div>
         </div>
