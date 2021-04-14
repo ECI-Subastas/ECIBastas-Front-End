@@ -26,29 +26,29 @@ para el despliegue del Front-End utilizamos Github pages, esta web utiliza un AP
 
 ### Diagrama de clases
 
-![](images\clases.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\clases.png)
 
 ### Diagrama de despliegue
 
-![](images\despliegue.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\despliegue.png)
 
 
 ### Diagrama de Componentes
 
-![](images\componentes.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\componentes.png)
 
 ### Diagrama de casos de uso
 
 #### Administrador
 
-![](images\casosadministrador.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\casosadministrador.png)
 
 #### Usuario
 
-![](images\casosusuario.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\casosusuario.png)
 
 #### vendedor
 
-![](images\casosvendedor.png)
+![](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images\casosvendedor.png)
 
 
