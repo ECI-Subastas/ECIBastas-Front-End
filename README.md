@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# ECIBastas - ARSW-1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ECIBastas es una plataforma web de comercio enfocada en la facilidad de uso, completitud y desempeño, esta dedicada en el tipo de venta de [subasta](https://es.wikipedia.org/wiki/Subasta "subasta") la cual es una venta organizada basado en la competencia directa, y generalmente pública.
 
-## Available Scripts
+Buscando una mejora de este tipo de ventas online, ECIBastas se enfoca en unas subastas freneticas y rapidas, y con este objetivo en mente, se desarrollo la plataforma, lograndolo por medio de la forma en como la subasta se presenta al cliente, dando acceso a cualquier producto y la posibilidad de pujar con el sin la necesidad de esperar a que sea "habilitado" por el vendedor, pues este al publicarlo hacepta que sea "habilitado" de manera automatica.
 
-In the project directory, you can run:
+## Autores
+- [Joel Carvjal](https://github.com/jocajime)
+- [Diego Murcia](https://github.com/DiegoMurcia2022)
+- [Johan Rueda](https://github.com/johanrueda)
+## Acceso
 
-### `yarn start`
+Puedes acceder a [ECIBastas](https://eci-subastas.github.io/ECIBastas-Front-End/#/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Construido con 
+- [Heroku](https://heroku.com/)
+- [Github Pages](https://pages.github.com/)
+- [Nodejs](https://nodejs.org/en/)
+- [Java](https://www.java.com/es/)
+- [Maven](https://maven.apache.org/)
+- [Spring](https://spring.io/projects/spring-boot)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Arquitectura de la aplicacion
 
-### `yarn test`
+para el despliegue del Front-End utilizamos Github pages, esta web utiliza un API Rest desplegado en heroku en el cual se tiene el Back-End del proyecto, que tiene una conexion base de datos para la persistencia de los datos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Diagrama de clases
 
-### `yarn build`
+![](images\clases.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Diagrama de despliegue
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](images\despliegue.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Diagrama de Componentes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](images\componentes.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Diagrama de casos de uso
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Administrador
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](images\casosadministrador.png)
 
-## Learn More
+#### Usuario
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](images\casosusuario.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### vendedor
 
-### Code Splitting
+![](images\casosvendedor.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
