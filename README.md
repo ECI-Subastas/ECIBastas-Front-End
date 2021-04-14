@@ -51,4 +51,5 @@ para el despliegue del Front-End utilizamos Github pages, esta web utiliza un AP
 
 ![foto](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images/casosvendedor.png)
 
+para mas informacion de la arquitectura descargue el archivo Diagramas.asta
 
