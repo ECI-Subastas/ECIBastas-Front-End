@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import "../css/signin-signup-style.css";
 import logo from "../images/logo.png";
 import logo2 from "../images/logo2.png";
-
 
 const LandingPage = (props) => {
   const nicknameSignupRef = useRef();
@@ -43,7 +42,7 @@ const LandingPage = (props) => {
         passwordSignInRef.current.value
       );
 
-      localStorage.setItem("userEmail", emailSignInRef.current.value)
+      localStorage.setItem("userEmail", emailSignInRef.current.value);
 
       console.log(currentUser);
 
@@ -79,8 +78,6 @@ const LandingPage = (props) => {
         .catch((error) => {
           console.log(`Error: ${error}`);
         });
-
-      history.push("/");
     } catch (error) {
       setError("Error during user register.");
     }
@@ -137,14 +134,16 @@ const LandingPage = (props) => {
               minLength="6"
               required
             />
-            <button
-              class="button"
-              type="submit"
-              disabled={loading}
-              onClick={signupEvent}
-            >
-              Sign Up
-            </button>
+            <Link to="/">
+              <button
+                class="button"
+                type="submit"
+                disabled={loading}
+                onClick={signupEvent}
+              >
+                Sign Up
+              </button>
+            </Link>
           </div>
         </div>
         <div class="form-container sign-in-container">

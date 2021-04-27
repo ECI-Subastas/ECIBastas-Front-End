@@ -21,8 +21,8 @@ const CreateNewAuction = () => {
 
   const createAuctionEvent = async () => {
     try {
-        setError("")
-        setLoading(true)
+      setError("");
+      setLoading(true);
       axios.post(
         "https://ecibastas-app.herokuapp.com/subasta/createNewSubasta",
         {
@@ -36,7 +36,7 @@ const CreateNewAuction = () => {
       setError("Error during auction creation");
     }
 
-    setLoading(false)
+    setLoading(false);
   };
 
   return (

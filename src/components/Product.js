@@ -15,7 +15,7 @@ const Product = (props) => {
       setError("");
       setLoading(true);
 
-      console.log(id)
+      console.log(id);
 
       axios
         .put(
