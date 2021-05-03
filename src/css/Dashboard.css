@@ -1,18 +1,18 @@
-.eci-nav-bar{
-    color: #0f0f0f;
+.eci-nav-bar {
+  color: #0f0f0f;
 }
 .logout {
-    margin: 10;
-  }
-
-.navbg{
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
-    font-size: 0.7cm;
+  margin: 10;
 }
-.ecibastas-tittle{
-    font-size: 0.7cm;
+
+.navbg {
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  font-size: 0.7cm;
+}
+.ecibastas-tittle {
+  font-size: 0.7cm;
 }
 
 .sidebar {
-    background-color: #FF416C;
+  background-color: #ff416c;
 }

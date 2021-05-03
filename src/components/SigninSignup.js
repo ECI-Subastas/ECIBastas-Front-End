@@ -5,13 +5,14 @@ import axios from "axios";
 import "../css/signin-signup-style.css";
 import logo from "../images/logo.png";
 import logo2 from "../images/logo2.png";
+import swal from "sweetalert";
 
-const LandingPage = (props) => {
-  const nicknameSignupRef = useRef();
-  const fullNameSignupRef = useRef();
-  const emailSignupRef = useRef();
-  const passwordSignupRef = useRef();
-  const phoneSignupRef = useRef();
+const LandingPage = () => {
+  const [nicknameSignupRef, setNickname] = useState("");
+  const [fullNameSignupRef, setName] = useState("");
+  const [emailSignupRef, setEmail] = useState("");
+  const [passwordSignupRef, setPassword] = useState("");
+  const [phoneSignupRef, setPhone] = useState("");
   const emailSignInRef = useRef();
   const passwordSignInRef = useRef();
   const containerRef = React.createRef();
@@ -48,7 +49,13 @@ const LandingPage = (props) => {
 
       history.push("/dashboard");
     } catch (error) {
-      setError("Sign In Failed.");
+      swal({
+        title: "Iniciar Sesión",
+        icon: "error",
+        text: "Credenciales invialidas.",
+        button: "Ok",
+        timer: "5000",
+      });
     }
 
     setLoading(false);
@@ -59,17 +66,14 @@ const LandingPage = (props) => {
       setError("");
       setLoading(true);
 
-      await signup(
-        emailSignupRef.current.value,
-        passwordSignupRef.current.value
-      );
+      await signup(emailSignupRef, passwordSignupRef);
 
       axios
         .post("https://ecibastas-app.herokuapp.com/user/createNewUser", {
-          nickname: nicknameSignupRef.current.value,
-          fullName: fullNameSignupRef.current.value,
-          email: emailSignupRef.current.value,
-          phone: phoneSignupRef.current.value,
+          nickname: nicknameSignupRef,
+          fullName: fullNameSignupRef,
+          email: emailSignupRef,
+          phone: phoneSignupRef,
           role: "User",
         })
         .then((response) => {
@@ -78,11 +82,54 @@ const LandingPage = (props) => {
         .catch((error) => {
           console.log(`Error: ${error}`);
         });
+
+      swal({
+        title: "Crear Nueva Cuenta",
+        text: "Se cuenta ha sido creada.",
+        icon: "success",
+        button: "Ok",
+        timer: "5000",
+      });
+
+      resetFields();
     } catch (error) {
-      setError("Error during user register.");
+      swal({
+        title: "Creat Nueva Cuenta",
+        icon: "error",
+        text: "Error al crear una nueva cuenta",
+        timer: "5000",
+      });
     }
 
     setLoading(false);
+  };
+
+  const handleNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const resetFields = () => {
+    setNickname("");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
   };
 
   return (
@@ -90,47 +137,57 @@ const LandingPage = (props) => {
       <div class="container" id="container" ref={containerRef}>
         <div class="form-container sign-up-container">
           <div className="form">
-            <h1>Create Account</h1>
+            <h1>Crear Nueva Cuenta</h1>
             <input
+              controlId="nickname"
               class="input"
               type="text"
               placeholder="Nickname"
-              ref={nicknameSignupRef}
+              value={nicknameSignupRef}
+              onChange={handleNickname}
               maxLength="100"
               required
             />
             <input
+              controlId="name"
               class="input"
               type="text"
-              placeholder="Full Name"
-              ref={fullNameSignupRef}
+              placeholder="Nombre Completo"
+              value={fullNameSignupRef}
+              onChange={handleName}
               maxLength="100"
               required
             />
             <input
+              controlId="phone"
               class="input"
               type="text"
-              placeholder="Phone Number"
-              ref={phoneSignupRef}
+              placeholder="Numero de Telefono"
+              value={phoneSignupRef}
+              onChange={handlePhone}
               minLength="10"
               maxLength="10"
               required
             />
             <input
+              controlId="email"
               class="input"
               type="email"
-              placeholder="Email"
+              placeholder="Correo Electronico"
               id="Sign-Up-Email"
-              ref={emailSignupRef}
+              value={emailSignupRef}
+              onChange={handleEmail}
               maxLength="100"
               required
             />
             <input
+              controlId="password"
               class="input"
               type="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               id="Sign-Up-Password"
-              ref={passwordSignupRef}
+              value={passwordSignupRef}
+              onChange={handlePassword}
               minLength="6"
               required
             />
@@ -141,25 +198,27 @@ const LandingPage = (props) => {
                 disabled={loading}
                 onClick={signupEvent}
               >
-                Sign Up
+                Crear
               </button>
             </Link>
           </div>
         </div>
         <div class="form-container sign-in-container">
           <div className="form">
-            <h1 className="h1">Sign in</h1>
+            <h1 className="h1">Inicio de Sesión</h1>
             <input
               class="input"
               type="email"
               placeholder="Email"
               ref={emailSignInRef}
+              required
             />
             <input
               class="input"
               type="password"
               placeholder="Password"
               ref={passwordSignInRef}
+              required
             />
             <button
               class="button"
@@ -167,7 +226,7 @@ const LandingPage = (props) => {
               disabled={loading}
               onClick={signInEvent}
             >
-              Sign In
+              Ingresar
             </button>
           </div>
         </div>
@@ -175,22 +234,24 @@ const LandingPage = (props) => {
           <div class="overlay">
             <div class="overlay-panel overlay-left">
               <img src={logo2} />
-              <h1 class="h1">Welcome Back!</h1>
+              <h1 class="h1">Bienvenid@ a ECIBastas!</h1>
               <p class="p">
-                To keep connected with us please login with your personal info
+                Para participar en nuestras subastas crea una cuenta y vive la
+                experiencia de participar en una subasta en vivo.
               </p>
               <button class="button ghost" id="signIn" onClick={signInButton}>
-                Sign In
+                Iniciar Sesión
               </button>
             </div>
             <div class="overlay-panel overlay-right">
               <img src={logo} />
-              <h1 class="h1">Hello, Friend!</h1>
+              <h1 class="h1">Estas de regreso!</h1>
               <p class="p">
-                Enter your personal details and start journey with us.
+                Ingresa tu información y continua participando en subastas con
+                nosotros.
               </p>
               <button class="button ghost" id="signUp" onClick={signUpButton}>
-                Sign Up
+                Crear Cuenta
               </button>
             </div>
           </div>

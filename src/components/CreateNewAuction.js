@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { Card, Form, Button } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getUserByEmail } from "./UserAPI";
+import { getUserByEmail } from "./APIs/UserAPI";
+import NavigationBar from "./NavigationBar";
+import "../css/Card.css";
+import imgSubasta from "../images/subasta.jpg";
 
 const CreateNewAuction = () => {
   const auctionRef = useRef();
@@ -41,20 +44,34 @@ const CreateNewAuction = () => {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Create New Auction</h2>
-          <Form onSubmit={createAuctionEvent}>
-            <Form.Group id="name">
-              <Form.Label>Auction Name</Form.Label>
-              <Form.Control type="text" ref={auctionRef} required />
-            </Form.Group>
-            <Button className="w-100" type="submit">
-              Create Auction
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+      <NavigationBar />
+      <Container fluid>
+        <div className="mt-4" />
+        <Row className="justify-content-center">
+          <Card style={{ width: "40em" }} className="card-style">
+            <Card.Body>
+              <Card.Img src={imgSubasta} />
+              <div className="mt-4" />
+              <Form onSubmit={createAuctionEvent}>
+                <Form.Group as={Row}>
+                  <Form.Label column sm="2">
+                    Nombre:
+                  </Form.Label>
+                  <Col sm="10">
+                    <Form.Control
+                      type="text"
+                      placeholder="Nombre de la Subasta"
+                      ref={auctionRef}
+                      required
+                    />
+                  </Col>
+                </Form.Group>
+                <Button type="submit">Crear Nueva subasta</Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Row>
+      </Container>
     </>
   );
 };

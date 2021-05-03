@@ -8,6 +8,7 @@ import UpdateProfile from "./UpdateProfile";
 import LandingPage from "./SigninSignup";
 import AuctionDashboard from "./AuctionDashboard";
 import CreateNewAuction from "./CreateNewAuction";
+import NavigationBar from "./NavigationBar";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/forgot-password" component={ForgotPassword} />
+        <PrivateRoute path="/nav-bar" component={NavigationBar} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/update-profile" component={UpdateProfile} />
         <PrivateRoute path="/auction-dashboard" component={AuctionDashboard} />

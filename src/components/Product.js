@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Product = (props) => {
-  const history = useHistory();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   var precio = props.actualprice;

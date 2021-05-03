@@ -1,6 +1,7 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import "../css/Card.css";
 
 const Auction = (props) => {
   const history = useHistory();
@@ -14,16 +15,20 @@ const Auction = (props) => {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{props.creator}</Card.Text>
-        <Card.Text>{props.subastaId}</Card.Text>
-        <Button variant="primary" onClick={enterToAuctionEvent}>
-          Go to subasta
-        </Button>
-      </Card.Body>
-    </Card>
+    <Col className="justify-content-center">
+      <Card className="card-style">
+        <Card.Body>
+          <Card.Title>{props.name}</Card.Title>
+          <Card.Text>{props.creator}</Card.Text>
+          <Card.Text>{props.subastaId}</Card.Text>
+          <button className="button-style-card" onClick={enterToAuctionEvent}>
+            Ingresar a Subasta
+          </button>
+        </Card.Body>
+      </Card>
+
+      <div class="mt-4" />
+    </Col>
   );
 };
 

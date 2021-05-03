@@ -1,0 +1,25 @@
+.navbg {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+
+.navbar-toggler:enabled {
+  border-color: transparent;
+}
+
+.navbar-toggler-icon:enabled {
+  color: #ffffff;
+}
+
+.button-style-navbar {
+  align-content: center;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
