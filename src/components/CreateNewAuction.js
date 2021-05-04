@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getUserByEmail } from "./APIs/UserAPI";
+import { getUserByEmail } from "../services/UserAPI";
 import NavigationBar from "./NavigationBar";
 import "../css/Card.css";
 import imgSubasta from "../images/subasta.jpg";

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "./APIs/ProductAPI";
+import { getAllProducts } from "../services/ProductAPI";
 import Product from "./Product";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import NavigationBar from "./NavigationBar";
+import { Container, Row } from "react-bootstrap";
 
 const AuctionDashboard = () => {
   var [publications, setPublications] = useState([]);
@@ -40,9 +41,8 @@ const AuctionDashboard = () => {
 
   return (
     <>
-      <NavigationBar />
       <h1>INFORMATION</h1>
-      <p>Name: {localStorage.getItem("name")}</p>
+      <p>Name: {localStorage.getItem("auctionName")}</p>
       <p>Id: {localStorage.getItem("subastaId")}</p>
       <p>Creator: {localStorage.getItem("creator")}</p>
 

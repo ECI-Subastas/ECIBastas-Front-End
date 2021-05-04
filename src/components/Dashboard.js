@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Dashboard.css";
 import Auction from "./Auction";
-import { getAllAuctions } from "./APIs/AuctionAPI";
+import { getAllAuctions } from "../services/AuctionAPI";
 import NavigationBar from "./NavigationBar";
 import { Container, Row } from "react-bootstrap";
 

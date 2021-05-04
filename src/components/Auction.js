@@ -7,7 +7,7 @@ const Auction = (props) => {
   const history = useHistory();
 
   const enterToAuctionEvent = () => {
-    localStorage.setItem("name", props.name);
+    localStorage.setItem("auctionName", props.name);
     localStorage.setItem("creator", props.creator);
     localStorage.setItem("subastaId", props.subastaId);
 
