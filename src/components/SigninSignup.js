@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory, Link } from "react-router-dom";
+import { getUserByEmail, getUserIdByEmail } from "../services/UserAPI";
 import axios from "axios";
 import "../css/signin-signup-style.css";
 import logo from "../images/logo.png";
@@ -43,9 +44,11 @@ const LandingPage = () => {
         passwordSignInRef.current.value
       );
 
-      localStorage.setItem("userEmail", emailSignInRef.current.value);
+      getUserIdByEmail(emailSignInRef.current.value).then((res) =>
+        localStorage.setItem("userId", res)
+      );
 
-      console.log(currentUser);
+      localStorage.setItem("userEmail", emailSignInRef.current.value);
 
       history.push("/dashboard");
     } catch (error) {
@@ -74,7 +77,7 @@ const LandingPage = () => {
           fullName: fullNameSignupRef,
           email: emailSignupRef,
           phone: phoneSignupRef,
-          role: "User",
+          credit: 1000,
         })
         .then((response) => {
           console.log(response);
@@ -94,7 +97,7 @@ const LandingPage = () => {
       resetFields();
     } catch (error) {
       swal({
-        title: "Creat Nueva Cuenta",
+        title: "Crear Nueva Cuenta",
         icon: "error",
         text: "Error al crear una nueva cuenta",
         timer: "5000",
@@ -161,7 +164,7 @@ const LandingPage = () => {
             <input
               controlId="phone"
               class="input"
-              type="text"
+              type="tel"
               placeholder="Numero de Telefono"
               value={phoneSignupRef}
               onChange={handlePhone}
@@ -209,14 +212,14 @@ const LandingPage = () => {
             <input
               class="input"
               type="email"
-              placeholder="Email"
+              placeholder="Correo Electronico"
               ref={emailSignInRef}
               required
             />
             <input
               class="input"
               type="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               ref={passwordSignInRef}
               required
             />

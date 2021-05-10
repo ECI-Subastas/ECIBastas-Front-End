@@ -6,3 +6,19 @@ export const getUserByEmail = (email) => {
     return res.json();
   });
 };
+
+export const getUserIdByEmail = (email) => {
+  return fetch(
+    `https://ecibastas-app.herokuapp.com/user/id?email=${email}`
+  ).then((res) => {
+    return res.json();
+  });
+};
+
+export const getCreditByUserId = (id) => {
+  return fetch(
+    `https://ecibastas-app.herokuapp.com/user/credit?userId=${id}`
+  ).then((res) => {
+    return res.json();
+  });
+};
