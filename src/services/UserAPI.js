@@ -22,3 +22,11 @@ export const getCreditByUserId = (id) => {
     return res.json();
   });
 };
+
+export const getNicknameByUserId = (id) => {
+  return fetch(
+    `https://ecibastas-app.herokuapp.com/user/nickname/userId?value=${id}`
+  ).then((res) => {
+    return res.json();
+  });
+};

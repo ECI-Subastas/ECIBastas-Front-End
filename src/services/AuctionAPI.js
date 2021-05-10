@@ -6,3 +6,11 @@ export const getAllAuctions = () => {
     }
   );
 };
+
+export const getAllUserAuctions = (userId) => {
+  return fetch(
+    `https://ecibastas-app.herokuapp.com/auction/userAuctions?userId=${userId}`
+  ).then((res) => {
+    return res.json();
+  });
+};

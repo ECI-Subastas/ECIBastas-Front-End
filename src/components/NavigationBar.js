@@ -17,7 +17,7 @@ import userIcon from "../images/icons/user-icon.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/NavigationBar.css";
 
-const NavigationBar = (props) => {
+const NavigationBar = () => {
   const [credit, setCredit] = useState();
   const [error, setError] = useState("");
   const { logout } = useAuth();
@@ -46,6 +46,16 @@ const NavigationBar = (props) => {
       setError("Fail");
     }
   };
+
+  const goToMyAuctions = () => {
+    setError("")
+
+    try {
+      history.push("/my-auctions")
+    } catch {
+      setError("Fail")
+    }
+  }
 
   const handleLogout = async () => {
     setError("");
@@ -97,9 +107,8 @@ const NavigationBar = (props) => {
             <img src={userIcon} width="40" height="auto" />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">
-            <Dropdown.Item>Item 01</Dropdown.Item>
-            <Dropdown.Item>Item 02</Dropdown.Item>
-            <Dropdown.Item>Item 03</Dropdown.Item>
+            <Dropdown.Item onClick={goToMyAuctions}>Mis Subastas</Dropdown.Item>
+            <Dropdown.Item>Actualizar Perfil</Dropdown.Item>
             <Dropdown.Item onClick={handleLogout}>Cerrar Sesión</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
