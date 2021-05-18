@@ -12,7 +12,7 @@ import swal from "sweetalert";
 const CreateNewProduct = () => {
   const auctionRef = useRef();
   const description = useRef();
-  const precioinicial = useState();
+  const precioinicial = useRef();
   const precioactual = useRef();
   const history = useHistory();
   const subasta = localStorage.getItem("subastaId");
