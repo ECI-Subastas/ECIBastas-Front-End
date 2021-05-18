@@ -10,6 +10,7 @@ import AuctionDashboard from "./AuctionDashboard";
 import CreateNewAuction from "./CreateNewAuction";
 import NavigationBar from "./NavigationBar";
 import MyAuctionsDashboard from "./MyAuctionsDashboard";
+import CreateNewProduct from "./CreateNewProduct";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <PrivateRoute path="/update-profile" component={UpdateProfile} />
         <PrivateRoute path="/auction-dashboard" component={AuctionDashboard} />
         <PrivateRoute path="/create-auction" component={CreateNewAuction} />
-        <PrivateRoute path="/my-auctions" component={MyAuctionsDashboard} />
+        <PrivateRoute path="/createNewProduct" component={CreateNewProduct} />
       </Switch>
     </AuthProvider>
   );
