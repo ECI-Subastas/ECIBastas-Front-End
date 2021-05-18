@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getUserByEmail } from "../services/UserAPI";
 import NavigationBar from "./NavigationBar";
 import "../css/Card.css";
-import imgSubasta from "../images/subasta.jpg";
 import swal from "sweetalert";
 
 const CreateNewProduct = () => {

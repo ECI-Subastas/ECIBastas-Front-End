@@ -1,32 +1,48 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { getUserByEmail } from "../services/UserAPI";
 import { Card, Button, Form, Row } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
 
 const Product = (props) => {
   const creditRef = useRef();
+  const email = localStorage.getItem("userEmail");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   var precio = props.actualprice;
   var id = props.productid;
+  const [user, setUser] = useState({});
+
+  useEffect(function () {
+    getUserByEmail(email).then((Response) => {
+            setUser(Response);
+    });
+});
 
   const enterToPujarEvent = async () => {
     try {
-      setError("");
-      setLoading(true);
-
-      console.log(id);
-
-      axios
-        .put(
-          `https://ecibastas-app.herokuapp.com/product/pujarDefault?productid=${id}`
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
+      if ( (5 + precio) <= user.credit) {
+        setError("");
+        setLoading(true);
+        axios
+          .put(
+            `https://ecibastas-app.herokuapp.com/product/pujarDefault?productid=${id}`
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(`Error: ${error}`);
+          });
+      } else {
+        swal({
+          title: "Pujar",
+          icon: "error",
+          text: "Error, creditos insuficientes",
+          timer: "5000",
         });
+      }
+
     } catch (error) {
       setError("Error during user register.");
     }
@@ -36,7 +52,22 @@ const Product = (props) => {
 
   const enterToPerPujarEvent = async () => {
     var credits = creditRef.current.value;
-    if (credits > props.actualprice) {
+    if (credits <= 0) {
+      swal({
+        title: "Pujar",
+        icon: "error",
+        text: "Error, valor incorrecto",
+        timer: "5000",
+      });
+      setLoading(false);
+    } else if (Number(credits)+Number(precio) > Number(user.credit)) {
+      swal({
+        title: "Pujar",
+        icon: "error",
+        text: "Error, Creditos insuficientes",
+        timer: "5000",
+      });
+    } else {
       try {
         setError("");
         setLoading(true);
@@ -51,18 +82,10 @@ const Product = (props) => {
           .catch((error) => {
             console.log(`Error: ${error}`);
           });
+
       } catch (error) {
         setError("Error during product auction event.");
       }
-
-      setLoading(false);
-    } else {
-      swal({
-        title: "Pujar",
-        icon: "error",
-        text: "Error, creditos menores a la puja actual",
-        timer: "5000",
-      });
     }
   };
 
@@ -90,8 +113,6 @@ const Product = (props) => {
                 </Form.Group>
                 <Button type="submit">Pujar</Button>
               </Form>
-          
-          
         </center>
       </Card.Body>
     </Card>

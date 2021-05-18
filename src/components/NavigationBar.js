@@ -48,14 +48,24 @@ const NavigationBar = () => {
   };
 
   const goToMyAuctions = () => {
-    setError("")
+    setError("");
 
     try {
-      history.push("/my-auctions")
+      history.push("/my-auctions");
     } catch {
-      setError("Fail")
+      setError("Fail");
     }
-  }
+  };
+
+  const goToCreditStore = () => {
+    setError("");
+
+    try {
+      history.push("/creditStore");
+    } catch {
+      setError("Fail");
+    }
+  };
 
   const handleLogout = async () => {
     setError("");
@@ -94,7 +104,7 @@ const NavigationBar = () => {
         </Nav>
         <h1>{credit}</h1>
         <Navbar.Brand>
-          <img src={coinIcon} width="40" height="auto" />
+          <img src={coinIcon} width="40" height="auto" onClick={goToCreditStore} />
         </Navbar.Brand>
         <Dropdown>
           <Dropdown.Toggle
