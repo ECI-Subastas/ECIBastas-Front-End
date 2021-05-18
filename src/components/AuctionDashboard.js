@@ -13,16 +13,18 @@ const AuctionDashboard = () => {
   const { logout } = useAuth();
   const history = useHistory();
 
+  const createProduct = () => {
+    history.push("/createNewProduct");
+  };
+
   useEffect(function () {
     getAllProducts(localStorage.getItem("subastaId")).then((res) =>
       setProducts(res)
     );
   });
 
-  if (
-    localStorage.getItem("userId") === localStorage.getItem("creator")
-  ) {
-    bproduct = <Button>Añadir productos a la Subasta</Button>;
+  if (localStorage.getItem("userId") === localStorage.getItem("creator")) {
+    bproduct = <Button onClick={createProduct}>Añadir productos a la Subasta</Button>;
   }
 
   async function handleLogout() {
@@ -48,7 +50,7 @@ const AuctionDashboard = () => {
 
   return (
     <>
-    <NavigationBar />
+      <NavigationBar />
       <center>
         <Card>
           <h1>INFORMATION</h1>
@@ -60,7 +62,7 @@ const AuctionDashboard = () => {
       </center>
 
       <Container fluid="md">
-      <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
+        <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
           {products.map((product) => (
             <Product
               productid={product.product_id}
@@ -73,8 +75,6 @@ const AuctionDashboard = () => {
           ))}
         </Row>
       </Container>
-      
-
     </>
   );
 };
