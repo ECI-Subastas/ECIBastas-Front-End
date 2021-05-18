@@ -7,11 +7,17 @@ import NavigationBar from "./NavigationBar";
 import { Container, Row, Button } from "react-bootstrap";
 
 const AuctionDashboard = () => {
+  
   var bproduct = <h1>No hay productos en esta subasta</h1>;
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
   const { logout } = useAuth();
   const history = useHistory();
+
+  const createProduct = () =>{
+    history.push("/createNewProduct")
+
+  }
 
   useEffect(function () {
     getAllProducts(localStorage.getItem("subastaId")).then((res) =>
@@ -23,9 +29,9 @@ const AuctionDashboard = () => {
     localStorage.getItem("userId") === localStorage.getItem("creator") &&
     products.length === 0
   ) {
-    bproduct = <Button>Añadir productos a la Subasta</Button>;
+    bproduct = <Button onClick={createProduct} >Añadir productos a la Subasta</Button>;
   }
-
+ 
   if (products.length > 0) {
     bproduct = products.map((product) => {
       return (
