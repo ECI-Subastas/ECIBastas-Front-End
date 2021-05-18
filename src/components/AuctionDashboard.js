@@ -53,10 +53,10 @@ const AuctionDashboard = () => {
       <NavigationBar />
       <center>
         <Card>
-          <h1>INFORMATION</h1>
-          <p>Name: {localStorage.getItem("auctionName")}</p>
+          <h1>INFORMACION</h1>
+          <p>Nombre: {localStorage.getItem("auctionName")}</p>
           <p>Id: {localStorage.getItem("subastaId")}</p>
-          <p>Creator: {localStorage.getItem("creator")}</p>
+          <p>Creador: {localStorage.getItem("creator")}</p>
           <div className="overflow-auto h-auto">{bproduct}</div>
         </Card>
       </center>

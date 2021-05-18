@@ -7,6 +7,7 @@ import { getUserByEmail } from "../services/UserAPI";
 import NavigationBar from "./NavigationBar";
 import "../css/Card.css";
 import imgSubasta from "../images/subasta.jpg";
+import swal from "sweetalert";
 
 const CreateNewProduct = () => {
   const auctionRef = useRef();
@@ -42,7 +43,15 @@ const CreateNewProduct = () => {
         }
       );
 
+      
       history.push("/dashboard");
+      swal({
+        title: "Creacion de producto",
+        icon: "info",
+        text: "Producto creado con exito en la subasta " +  subasta,
+        timer: "5000",
+      });
+     
     } catch (error) {
       setError("Error during auction creation");
     }
@@ -58,10 +67,12 @@ const CreateNewProduct = () => {
         <Row className="justify-content-center">
           <Card style={{ width: "40em" }} className="card-style">
             <Card.Body>
-              <Card.Img src={imgSubasta} />
-              <div className="mt-4" />
+              
+              
+              <center>
               <Form onSubmit={createAuctionEvent}>
                 <Form.Group as={Row}>
+                &nbsp;&nbsp;&nbsp;
                   <Form.Label column sm="2">
                     Nombre:
                   </Form.Label>
@@ -73,11 +84,13 @@ const CreateNewProduct = () => {
                       required
                     />
                   </Col>
-                  <div className="mt-4"></div>
-                  <Form.Label column sm="2">
+                  
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Form.Label column sm="3">
                     Descripcion:
                   </Form.Label>
-                  <Col sm="15">
+                  <div className="mt-4" />
+                  <Col sm="60">
                     <Form.Control
                       type="text"
                       placeholder="Descripcion del producto"
@@ -85,8 +98,9 @@ const CreateNewProduct = () => {
                       required
                     />
                   </Col>
-                  <Form.Label column sm="2">
-                    Precio Inicial
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Form.Label column sm="3">
+                    Precio Inicial:
                   </Form.Label>
                   <Col sm="15">
                     <Form.Control
@@ -96,10 +110,11 @@ const CreateNewProduct = () => {
                       required
                     />
                   </Col>
-                  <input type="file" id="filechooser"></input>
+                  <input  type="file" id="filechooser"></input>
                 </Form.Group>
                 <Button type="submit">Crear Nuevo Producto</Button>
               </Form>
+              </center>
             </Card.Body>
           </Card>
         </Row>
