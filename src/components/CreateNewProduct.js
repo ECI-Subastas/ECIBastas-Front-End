@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
@@ -37,20 +37,17 @@ const CreateNewProduct = () => {
           description: description.current.value,
           precioinicial: precioinicial,
           precioactual: precioinicial,
-          subasta: subasta
-
+          subasta: subasta,
         }
       );
 
-      
       history.push("/dashboard");
       swal({
         title: "Creacion de producto",
         icon: "info",
-        text: "Producto creado con exito en la subasta " +  subasta,
+        text: "Producto creado con exito en la subasta " + subasta,
         timer: "5000",
       });
-     
     } catch (error) {
       setError("Error during auction creation");
     }
@@ -66,53 +63,50 @@ const CreateNewProduct = () => {
         <Row className="justify-content-center">
           <Card style={{ width: "40em" }} className="card-style">
             <Card.Body>
-              
-              
               <center>
-              <Form onSubmit={createAuctionEvent}>
-                <Form.Group as={Row}>
-                &nbsp;&nbsp;&nbsp;
-                  <Form.Label column sm="2">
-                    Nombre:
-                  </Form.Label>
-                  <Col sm="15">
-                    <Form.Control
-                      type="text"
-                      placeholder="Nombre del producto"
-                      ref={auctionRef}
-                      required
-                    />
-                  </Col>
-                  
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Form.Label column sm="3">
-                    Descripcion:
-                  </Form.Label>
-                  <div className="mt-4" />
-                  <Col sm="60">
-                    <Form.Control
-                      type="text"
-                      placeholder="Descripcion del producto"
-                      ref={description}
-                      required
-                    />
-                  </Col>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Form.Label column sm="3">
-                    Precio Inicial:
-                  </Form.Label>
-                  <Col sm="15">
-                    <Form.Control
-                      type="number"
-                      placeholder="Precio inicial del producto"
-                      ref={precioinicial}
-                      required
-                    />
-                  </Col>
-                  <input  type="file" id="filechooser"></input>
-                </Form.Group>
-                <Button type="submit">Crear Nuevo Producto</Button>
-              </Form>
+                <Form onSubmit={createAuctionEvent}>
+                  <Form.Group as={Row}>
+                    &nbsp;&nbsp;&nbsp;
+                    <Form.Label column sm="2">
+                      Nombre:
+                    </Form.Label>
+                    <Col sm="15">
+                      <Form.Control
+                        type="text"
+                        placeholder="Nombre del producto"
+                        ref={auctionRef}
+                        required
+                      />
+                    </Col>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Form.Label column sm="3">
+                      Descripcion:
+                    </Form.Label>
+                    <div className="mt-4" />
+                    <Col sm="60">
+                      <Form.Control
+                        type="text"
+                        placeholder="Descripcion del producto"
+                        ref={description}
+                        required
+                      />
+                    </Col>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Form.Label column sm="3">
+                      Precio Inicial:
+                    </Form.Label>
+                    <Col sm="15">
+                      <Form.Control
+                        type="number"
+                        placeholder="Precio inicial del producto"
+                        ref={precioinicial}
+                        required
+                      />
+                    </Col>
+                    <input type="file" id="filechooser"></input>
+                  </Form.Group>
+                  <Button type="submit">Crear Nuevo Producto</Button>
+                </Form>
               </center>
             </Card.Body>
           </Card>

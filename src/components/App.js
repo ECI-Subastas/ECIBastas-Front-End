@@ -26,6 +26,7 @@ function App() {
         <PrivateRoute path="/create-auction" component={CreateNewAuction} />
         <PrivateRoute path="/createNewProduct" component={CreateNewProduct} />
         <PrivateRoute path="/creditStore" component={CreditStore} />
+        <PrivateRoute path="/my-auctions" component={MyAuctionsDashboard} />
       </Switch>
     </AuthProvider>
   );

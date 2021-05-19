@@ -3,6 +3,7 @@ import { getUserByEmail } from "../services/UserAPI";
 import { Card, Button, Form, Row } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
+import "../css/Card.css"
 
 const Product = (props) => {
   const creditRef = useRef();
@@ -118,7 +119,7 @@ const Product = (props) => {
   };
 
   return (
-    <Card style={{ width: "17rem" }}>
+    <Card className="card-style">
       <Card.Body>
         <Card.Title>NAME: {props.name}</Card.Title>
         <Card.Text>AUCTION ID: {props.subasta}</Card.Text>

@@ -5,9 +5,11 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import NavigationBar from "./NavigationBar";
 import { Container, Row, Button, Card } from "react-bootstrap";
+import "../css/Card.css"
 
 const AuctionDashboard = () => {
-  var bproduct = <h1>No puedes añadir productos</h1>;
+  var bproduct;
+  var stopAuction
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
   const { logout } = useAuth();
@@ -24,7 +26,9 @@ const AuctionDashboard = () => {
   });
 
   if (localStorage.getItem("userId") === localStorage.getItem("creator")) {
-    bproduct = <Button onClick={createProduct}>Añadir productos a la Subasta</Button>;
+    bproduct = (
+      <Button onClick={createProduct}>Añadir productos a la Subasta</Button>
+    );
   }
 
   async function handleLogout() {
@@ -51,17 +55,18 @@ const AuctionDashboard = () => {
   return (
     <>
       <NavigationBar />
-      <center>
-        <Card>
-          <h1>INFORMACION</h1>
+      <Container fluid="md">
+        <div className="mt-4" />
+        <center>
+          <h1>INFORMACIÓN</h1>
           <p>Nombre: {localStorage.getItem("auctionName")}</p>
           <p>Id: {localStorage.getItem("subastaId")}</p>
           <p>Creador: {localStorage.getItem("creator")}</p>
           <div className="overflow-auto h-auto">{bproduct}</div>
-        </Card>
-      </center>
-
-      <Container fluid="md">
+          <div className="mt-2" />
+          <div className="overflow-auto h-auto">{stopAuction}</div>
+        </center>
+        <div className="mt-4" />
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
           {products.map((product) => (
             <Product

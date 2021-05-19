@@ -56,13 +56,17 @@ export default function Dashboard() {
       <div class="mt-4" />
       <Container fluid="md">
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
-          {publications.map((publication) => (
-            <Auction
-              subastaId={publication.subastaId}
-              name={publication.name}
-              creator={publication.creator}
-            ></Auction>
-          ))}
+          {publications.map((publication) => {
+            if (publication.isActive == true) {
+              return (
+                <Auction
+                  subastaId={publication.subastaId}
+                  name={publication.name}
+                  creator={publication.creator}
+                ></Auction>
+              );
+            }
+          })}
         </Row>
       </Container>
       <div class="mt-4"></div>

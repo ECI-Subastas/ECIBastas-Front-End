@@ -20,7 +20,7 @@ const MyAuctionsDashboard = () => {
       <Container fluid="md">
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
           {auctions.map((auction) => (
-            <MyAuctions name={auction.name} subastaId={auction.subastaId} creator={auction.creator} />
+            <MyAuctions name={auction.name} subastaId={auction.subastaId} creator={auction.creator} isActive={auction.isActive} />
           ))}
         </Row>
       </Container>
