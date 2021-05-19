@@ -7,7 +7,6 @@ import swal from "sweetalert";
 const Product = (props) => {
   const creditRef = useRef();
   const email = localStorage.getItem("userEmail");
-  const pujaPer = props.actualprice + 1;
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   var precio = props.actualprice;
