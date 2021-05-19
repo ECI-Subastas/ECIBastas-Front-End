@@ -23,21 +23,13 @@ const Product = (props) => {
 
   const enterToPujarEvent = async () => {
     try {
-      if (5 + precio <= user.credit && auctionCreator != userId) {
-        if (props.owner != userId) {
-          setError("");
-          setLoading(true);
-          axios.put(
-            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
-          );
-        } else {
-          swal({
-            title: "Error al Pujar",
-            icon: "error",
-            text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
-            timer: "5000",
-          });
-        }
+      if (props.owner === userId) {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
+          timer: "5000",
+        });
       } else if (auctionCreator === userId) {
         swal({
           title: "Error al Pujar",
@@ -45,13 +37,19 @@ const Product = (props) => {
           text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
           timer: "5000",
         });
-      } else {
+      } else if (5 + Number(precio) > user.credit) {
         swal({
           title: "Pujar",
           icon: "error",
           text: "Error, creditos insuficientes",
           timer: "5000",
         });
+      } else {
+        setError("");
+        setLoading(true);
+        axios.put(
+          `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
+        );
       }
     } catch (error) {
       setError("Error during user register.");
@@ -67,49 +65,43 @@ const Product = (props) => {
       setError("");
       setLoading(true);
 
-      if (auctionCreator != userId && credits > 0 && auctionCreator != userId) {
-        if (props.owner != userId) {
-          axios.put(
-            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${id}&credits=${credits}&userid=${userId}`
-          );
-        } else {
+      if (credits > 0) {
+        if (props.owner === userId) {
           swal({
             title: "Error al Pujar",
             icon: "error",
             text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
             timer: "5000",
           });
+        } else if (auctionCreator === userId) {
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
+            timer: "5000",
+          });
+        } else if (Number(credits) + Number(precio) > Number(user.credit)) {
+          swal({
+            title: "Pujar",
+            icon: "error",
+            text: "Error, creditos insuficientes",
+            timer: "5000",
+          });
+        } else {
+          setError("");
+          setLoading(true);
+          axios.put(
+            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
+          );
         }
-      } else if (auctionCreator === userId) {
-        swal({
-          title: "Error al Pujar",
-          icon: "error",
-          text: "Eres el dueño de la subasta, NO PUEDES PUJAR!!!",
-          timer: "5000",
-        });
-      } else if (credits <= 0) {
+      } else {
         swal({
           title: "Error al Pujar",
           icon: "error",
           text: "Error, El valor introducido es incorrecto.",
           timer: "5000",
         });
-      } else if (Number(credits) + Number(precio) > Number(user.credit)) {
-        swal({
-          title: "Error al Pujar",
-          icon: "error",
-          text: "Error, Creditos Insuficientes",
-          timer: "5000",
-        });
-      } else {
-        swal({
-          title: "Error al Pujar",
-          icon: "error",
-          text: "Error, Creditos Insuficientes",
-          timer: "5000",
-        });
       }
-
       setLoading(false);
     } catch (error) {
       setError("A ocurrido un error realizando una puja personalizada.");
