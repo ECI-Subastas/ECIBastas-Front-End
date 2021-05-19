@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ECIBastas-Front-End/static/css/main.41db7d53.chunk.css",
-    "main.js": "/ECIBastas-Front-End/static/js/main.973f8001.chunk.js",
-    "main.js.map": "/ECIBastas-Front-End/static/js/main.973f8001.chunk.js.map",
+    "main.js": "/ECIBastas-Front-End/static/js/main.bb8696ca.chunk.js",
+    "main.js.map": "/ECIBastas-Front-End/static/js/main.bb8696ca.chunk.js.map",
     "runtime-main.js": "/ECIBastas-Front-End/static/js/runtime-main.e04a177f.js",
     "runtime-main.js.map": "/ECIBastas-Front-End/static/js/runtime-main.e04a177f.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/ECIBastas-Front-End/static/css/2.4c97ca4f.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.a87167f4.chunk.js",
     "static/css/main.41db7d53.chunk.css",
-    "static/js/main.973f8001.chunk.js"
+    "static/js/main.bb8696ca.chunk.js"
   ]
 }
