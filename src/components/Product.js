@@ -23,7 +23,7 @@ const Product = (props) => {
 
   const enterToPujarEvent = async () => {
     try {
-      if (props.owner === userId) {
+      if (props.owner == userId) {
         swal({
           title: "Error al Pujar",
           icon: "error",
