@@ -5,51 +5,22 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import NavigationBar from "./NavigationBar";
 import { Container, Row, Button, Card } from "react-bootstrap";
-import "../css/Card.css"
+import "../css/Card.css";
+import MyProducts from "./MyProducts";
 
 const AuctionDashboard = () => {
-  var bproduct;
+  var message;
+  var vacio = useState([]);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
   const { logout } = useAuth();
   const history = useHistory();
-
-  const createProduct = () => {
-    history.push("/createNewProduct");
-  };
 
   useEffect(function () {
     getAllProducts(localStorage.getItem("subastaId")).then((res) =>
       setProducts(res)
     );
   });
-
-  if (localStorage.getItem("userId") === localStorage.getItem("creator")) {
-    bproduct = (
-      <Button onClick={createProduct}>Añadir productos a la Subasta</Button>
-    );
-  }
-
-  async function handleLogout() {
-    setError("");
-
-    try {
-      await logout();
-      history.push("/");
-    } catch {
-      setError("Failed to log out");
-    }
-  }
-
-  async function handleDashboard() {
-    setError("");
-
-    try {
-      history.push("/dashboard");
-    } catch {
-      setError("Failed to log out");
-    }
-  }
 
   return (
     <>
@@ -61,22 +32,20 @@ const AuctionDashboard = () => {
           <p>Nombre: {localStorage.getItem("auctionName")}</p>
           <p>Id: {localStorage.getItem("subastaId")}</p>
           <p>Creador: {localStorage.getItem("creator")}</p>
-          <div className="overflow-auto h-auto">{bproduct}</div>
-          <div className="mt-2" />
         </center>
         <div className="mt-4" />
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
-          {products.map((product) => (
-            <Product
-              productid={product.product_id}
-              name={product.name}
-              subasta={product.subasta}
-              description={product.description}
-              initialprice={product.initialprice}
-              actualprice={product.actualprice}
-              owner={product.owner_user}
-            />
-          ))}
+          {products.map((product) => {
+            if (product.owner_user == localStorage.getItem("userId")) {
+              return (
+                <MyProducts
+                  name={product.name}
+                  description={product.description}
+                  owner={product.owner_user}
+                ></MyProducts>
+              );
+            }
+          })}
         </Row>
       </Container>
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getUserByEmail } from "../services/UserAPI";
+import { getNicknameByUserId, getUserByEmail } from "../services/UserAPI";
 import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
@@ -15,11 +15,12 @@ const Product = (props) => {
   const userId = localStorage.getItem("userId");
   const auctionCreator = localStorage.getItem("creator");
   const [user, setUser] = useState({});
+  const [nickname, setNickname] = useState("")
  
 
   useEffect(function () {
-    getUserByEmail(email).then((Response) => {
-      setUser(Response);
+    getUserByEmail(email).then((res) => {
+      setUser(res);
     });
   });
   

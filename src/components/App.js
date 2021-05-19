@@ -12,6 +12,8 @@ import NavigationBar from "./NavigationBar";
 import MyAuctionsDashboard from "./MyAuctionsDashboard";
 import CreateNewProduct from "./CreateNewProduct";
 import CreditStore from "./CreditStore";
+import MyProductsDashboard from "./MyProductsDashboard";
+import OwnedProducts from "./OwnedProducts"
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <PrivateRoute path="/createNewProduct" component={CreateNewProduct} />
         <PrivateRoute path="/creditStore" component={CreditStore} />
         <PrivateRoute path="/my-auctions" component={MyAuctionsDashboard} />
+        <PrivateRoute path="/my-products" component={MyProductsDashboard} />
+        <PrivateRoute path="/my-products-in-auction" component={OwnedProducts} />
       </Switch>
     </AuthProvider>
   );

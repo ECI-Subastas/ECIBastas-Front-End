@@ -14,6 +14,7 @@ import houseIcon from "../images/icons/house-icon.png";
 import auctionIcon from "../images/icons/auction-icon.png";
 import coinIcon from "../images/icons/coin-icon.png";
 import userIcon from "../images/icons/user-icon.png";
+import cartIcon from "../images/icons/shopping_cart-icon.png"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/NavigationBar.css";
 import { propTypes } from "react-bootstrap/esm/Image";
@@ -68,6 +69,14 @@ const NavigationBar = () => {
     }
   };
 
+  const goToMyProducts = () => {
+    try {
+      history.push("/my-products") 
+    } catch (error) {
+      setError("Fail")
+    }
+  }
+
   const handleLogout = async () => {
     setError("");
 
@@ -102,11 +111,14 @@ const NavigationBar = () => {
           <NavLink onClick={goToCreateAuction}>
             <img src={auctionIcon} width="40" height="auto" />
           </NavLink>
+          <NavLink onClick={goToMyProducts}>
+            <img src={cartIcon} width="40" height="auto" />
+          </NavLink>
         </Nav>
         <h1>{credit}</h1>
-        <Navbar.Brand>
-          <img src={coinIcon} width="40" height="auto" onClick={goToCreditStore} />
-        </Navbar.Brand>
+        <NavLink onClick={goToCreditStore}>
+          <img src={coinIcon} width="40" height="auto"/>
+        </NavLink>
         <Dropdown>
           <Dropdown.Toggle
             style={{
@@ -118,7 +130,7 @@ const NavigationBar = () => {
             <img src={userIcon} width="40" height="auto" />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">
-            <Dropdown.Item>My user id: {localStorage.getItem("userId")}</Dropdown.Item>
+            <Dropdown.ItemText>My user id: {localStorage.getItem("userId")}</Dropdown.ItemText>
             <Dropdown.Item onClick={goToMyAuctions}>Mis Subastas</Dropdown.Item>
             <Dropdown.Item onClick={handleLogout}>Cerrar Sesión</Dropdown.Item>
           </Dropdown.Menu>
