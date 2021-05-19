@@ -1,26 +1,27 @@
 {
   "files": {
     "main.css": "/ECIBastas-Front-End/static/css/main.41db7d53.chunk.css",
-    "main.js": "/ECIBastas-Front-End/static/js/main.bb8696ca.chunk.js",
-    "main.js.map": "/ECIBastas-Front-End/static/js/main.bb8696ca.chunk.js.map",
+    "main.js": "/ECIBastas-Front-End/static/js/main.60562c5e.chunk.js",
+    "main.js.map": "/ECIBastas-Front-End/static/js/main.60562c5e.chunk.js.map",
     "runtime-main.js": "/ECIBastas-Front-End/static/js/runtime-main.e04a177f.js",
     "runtime-main.js.map": "/ECIBastas-Front-End/static/js/runtime-main.e04a177f.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/ECIBastas-Front-End/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.a87167f4.chunk.js": "/ECIBastas-Front-End/static/js/2.a87167f4.chunk.js",
-    "static/js/2.a87167f4.chunk.js.map": "/ECIBastas-Front-End/static/js/2.a87167f4.chunk.js.map",
+    "static/js/2.c506e41b.chunk.js": "/ECIBastas-Front-End/static/js/2.c506e41b.chunk.js",
+    "static/js/2.c506e41b.chunk.js.map": "/ECIBastas-Front-End/static/js/2.c506e41b.chunk.js.map",
     "index.html": "/ECIBastas-Front-End/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/ECIBastas-Front-End/static/css/2.4c97ca4f.chunk.css.map",
     "static/css/main.41db7d53.chunk.css.map": "/ECIBastas-Front-End/static/css/main.41db7d53.chunk.css.map",
-    "static/js/2.a87167f4.chunk.js.LICENSE.txt": "/ECIBastas-Front-End/static/js/2.a87167f4.chunk.js.LICENSE.txt",
+    "static/js/2.c506e41b.chunk.js.LICENSE.txt": "/ECIBastas-Front-End/static/js/2.c506e41b.chunk.js.LICENSE.txt",
     "static/media/coin-icon.ab00f5d2.png": "/ECIBastas-Front-End/static/media/coin-icon.ab00f5d2.png",
     "static/media/logoecibastas.e667b160.png": "/ECIBastas-Front-End/static/media/logoecibastas.e667b160.png",
+    "static/media/shopping_cart-icon.e4282074.png": "/ECIBastas-Front-End/static/media/shopping_cart-icon.e4282074.png",
     "static/media/subasta.fdb5cf82.jpg": "/ECIBastas-Front-End/static/media/subasta.fdb5cf82.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e04a177f.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.a87167f4.chunk.js",
+    "static/js/2.c506e41b.chunk.js",
     "static/css/main.41db7d53.chunk.css",
-    "static/js/main.bb8696ca.chunk.js"
+    "static/js/main.60562c5e.chunk.js"
   ]
 }
