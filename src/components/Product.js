@@ -66,7 +66,7 @@ const Product = (props) => {
       setLoading(true);
 
       if (credits > 0) {
-        if (props.owner === userId) {
+        if (props.owner == userId) {
           swal({
             title: "Error al Pujar",
             icon: "error",
