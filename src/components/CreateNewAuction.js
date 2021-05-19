@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, swal } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
@@ -29,13 +29,20 @@ const CreateNewAuction = () => {
       axios.post(
         "https://ecibastas-app.herokuapp.com/subasta/createNewSubasta",
         {
-          name: auctionRef.current.value,
-          creator: user.user_id,
+          "name": auctionRef.current.value,
+          "creator": user.user_id,
+          "isActive": false
         }
       );
 
       history.push("/dashboard");
     } catch (error) {
+      swal({
+        title: "Error al Crear Subasta",
+        icon: "error",
+        text: "No se pudo crear subasta",
+        timer: "5000",
+      });
       setError("Error during auction creation");
     }
 
