@@ -16,6 +16,7 @@ import coinIcon from "../images/icons/coin-icon.png";
 import userIcon from "../images/icons/user-icon.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/NavigationBar.css";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const NavigationBar = () => {
   const [credit, setCredit] = useState();
@@ -117,8 +118,8 @@ const NavigationBar = () => {
             <img src={userIcon} width="40" height="auto" />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">
+            <Dropdown.Item>My user id: {localStorage.getItem("userId")}</Dropdown.Item>
             <Dropdown.Item onClick={goToMyAuctions}>Mis Subastas</Dropdown.Item>
-            <Dropdown.Item>Actualizar Perfil</Dropdown.Item>
             <Dropdown.Item onClick={handleLogout}>Cerrar Sesión</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

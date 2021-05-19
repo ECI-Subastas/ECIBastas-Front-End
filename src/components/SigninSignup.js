@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory, Link } from "react-router-dom";
-import { getUserByEmail, getUserIdByEmail } from "../services/UserAPI";
+import {  getUserIdByEmail } from "../services/UserAPI";
 import axios from "axios";
 import "../css/signin-signup-style.css";
 import logo from "../images/logo.png";

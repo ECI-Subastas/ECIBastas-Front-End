@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { getUserByEmail } from "../services/UserAPI";
-import { Card, Button, Form, Row } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
 import "../css/Card.css"
@@ -15,13 +15,14 @@ const Product = (props) => {
   const userId = localStorage.getItem("userId");
   const auctionCreator = localStorage.getItem("creator");
   const [user, setUser] = useState({});
+ 
 
   useEffect(function () {
     getUserByEmail(email).then((Response) => {
       setUser(Response);
     });
   });
-
+  
   const enterToPujarEvent = async () => {
     try {
       if (props.owner == userId) {
@@ -49,7 +50,7 @@ const Product = (props) => {
         setError("");
         setLoading(true);
         axios.put(
-          `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
+          `https://ecibastas-app.herokuapp.com/product/pujar?productid=${id}&credits=5&userid=${userId}`
         );
       }
     } catch (error) {
@@ -113,10 +114,10 @@ const Product = (props) => {
     <Card className="card-style">
       <Card.Body>
         <Card.Title>NAME: {props.name}</Card.Title>
-        <Card.Text>AUCTION ID: {props.subasta}</Card.Text>
         <Card.Text>DESCRIPTION: {props.description}</Card.Text>
         <Card.Text>INITIAL PRICE: {props.initialprice}</Card.Text>
         <Card.Text>ACTUAL PRICE: {props.actualprice}</Card.Text>
+        <Card.Text>OWNER: {props.owner}</Card.Text>
         <center>
           <Button variant="primary" onClick={enterToPujarEvent}>
             Pujar 5 Creditos
