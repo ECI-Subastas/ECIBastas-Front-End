@@ -19,8 +19,7 @@ const Auction = (props) => {
       <Card className="card-style">
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
-          <Card.Text>{props.creator}</Card.Text>
-          <Card.Text>{props.subastaId}</Card.Text>
+          <Card.Text>Creator: {props.creator}</Card.Text>
           <button className="button-style-card" onClick={enterToAuctionEvent}>
             Ingresar a Subasta
           </button>
