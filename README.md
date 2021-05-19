@@ -45,10 +45,6 @@ para el despliegue del Front-End utilizamos Github pages, esta web utiliza un AP
 
 ### Diagrama de casos de uso
 
-#### Administrador
-
-![foto](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images/casosadministrador.png)
-
 #### Usuario
 
 ![foto](https://github.com/ECI-Subastas/ECIBastas-Front-End/blob/master/images/casosusuario.png)
