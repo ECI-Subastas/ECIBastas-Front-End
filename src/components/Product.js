@@ -7,33 +7,45 @@ import swal from "sweetalert";
 const Product = (props) => {
   const creditRef = useRef();
   const email = localStorage.getItem("userEmail");
+  const pujaPer = props.actualprice + 1;
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   var precio = props.actualprice;
   var id = props.productid;
+  const userId = localStorage.getItem("userId");
+  const auctionCreator = localStorage.getItem("creator");
   const [user, setUser] = useState({});
 
   useEffect(function () {
     getUserByEmail(email).then((Response) => {
-            setUser(Response);
+      setUser(Response);
     });
-});
+  });
 
   const enterToPujarEvent = async () => {
     try {
-      if ( (5 + precio) <= user.credit) {
-        setError("");
-        setLoading(true);
-        axios
-          .put(
-            `https://ecibastas-app.herokuapp.com/product/pujarDefault?productid=${id}`
-          )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(`Error: ${error}`);
+      if (5 + precio <= user.credit && auctionCreator != userId) {
+        if (props.owner != userId) {
+          setError("");
+          setLoading(true);
+          axios.put(
+            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
+          );
+        } else {
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
+            timer: "5000",
           });
+        }
+      } else if (auctionCreator === userId) {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
+          timer: "5000",
+        });
       } else {
         swal({
           title: "Pujar",
@@ -42,7 +54,6 @@ const Product = (props) => {
           timer: "5000",
         });
       }
-
     } catch (error) {
       setError("Error during user register.");
     }
@@ -51,41 +62,58 @@ const Product = (props) => {
   };
 
   const enterToPerPujarEvent = async () => {
-    var credits = creditRef.current.value;
-    if (credits <= 0) {
-      swal({
-        title: "Pujar",
-        icon: "error",
-        text: "Error, valor incorrecto",
-        timer: "5000",
-      });
-      setLoading(false);
-    } else if (Number(credits)+Number(precio) > Number(user.credit)) {
-      swal({
-        title: "Pujar",
-        icon: "error",
-        text: "Error, Creditos insuficientes",
-        timer: "5000",
-      });
-    } else {
-      try {
-        setError("");
-        setLoading(true);
-        
-        axios
-          .put(
-            `https://ecibastas-app.herokuapp.com/product/pujarPersonalize?productid=${id}&credits=${credits}`
-          )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(`Error: ${error}`);
-          });
+    try {
+      var credits = creditRef.current.value;
 
-      } catch (error) {
-        setError("Error during product auction event.");
+      setError("");
+      setLoading(true);
+
+      if (auctionCreator != userId && credits > 0 && auctionCreator != userId) {
+        if (props.owner != userId) {
+          axios.put(
+            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${id}&credits=${credits}&userid=${userId}`
+          );
+        } else {
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
+            timer: "5000",
+          });
+        }
+      } else if (auctionCreator === userId) {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Eres el dueño de la subasta, NO PUEDES PUJAR!!!",
+          timer: "5000",
+        });
+      } else if (credits <= 0) {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Error, El valor introducido es incorrecto.",
+          timer: "5000",
+        });
+      } else if (Number(credits) + Number(precio) > Number(user.credit)) {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Error, Creditos Insuficientes",
+          timer: "5000",
+        });
+      } else {
+        swal({
+          title: "Error al Pujar",
+          icon: "error",
+          text: "Error, Creditos Insuficientes",
+          timer: "5000",
+        });
       }
+
+      setLoading(false);
+    } catch (error) {
+      setError("A ocurrido un error realizando una puja personalizada.");
     }
   };
 
@@ -102,17 +130,12 @@ const Product = (props) => {
             Pujar 5 Creditos
           </Button>
           <div className="mt-4" />
-          <Form onSubmit={enterToPerPujarEvent}>
-                <Form.Group as={Row}>
-                    <Form.Control
-                      type="number"
-                      placeholder="Creditos"
-                      ref={creditRef}
-                      required
-                    />
-                </Form.Group>
-                <Button type="submit">Pujar</Button>
-              </Form>
+          <Form>
+            <Form.Group>
+              <Form.Control type="number" ref={creditRef} defaultValue="1" />
+            </Form.Group>
+          </Form>
+          <Button onClick={enterToPerPujarEvent}>Pujar</Button>
         </center>
       </Card.Body>
     </Card>

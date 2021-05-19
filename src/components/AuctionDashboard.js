@@ -71,6 +71,7 @@ const AuctionDashboard = () => {
               description={product.description}
               initialprice={product.initialprice}
               actualprice={product.actualprice}
+              owner={product.owner_user}
             />
           ))}
         </Row>
