@@ -12,7 +12,6 @@ const CreateNewProduct = () => {
   const auctionRef = useRef();
   const description = useRef();
   const precioinicial = useRef();
-  const precioactual = useRef();
   const history = useHistory();
   const subasta = localStorage.getItem("subastaId");
   const email = localStorage.getItem("userEmail");
@@ -26,7 +25,7 @@ const CreateNewProduct = () => {
     });
   });
 
-  const createAuctionEvent = async () => {
+  const createProductEvent = async () => {
     try {
       setError("");
       setLoading(true);
@@ -34,10 +33,10 @@ const CreateNewProduct = () => {
         "https://ecibastas-app.herokuapp.com/product/createNewProduct",
         {
           name: auctionRef.current.value,
-          description: description.current.value,
-          precioinicial: precioinicial,
-          precioactual: precioinicial,
           subasta: subasta,
+          description: description.current.value,
+          initialprice: precioinicial.current.value,
+          actualprice: precioinicial.current.value,
         }
       );
 
@@ -61,16 +60,15 @@ const CreateNewProduct = () => {
       <Container fluid>
         <div className="mt-4" />
         <Row className="justify-content-center">
-          <Card style={{ width: "40em" }} className="card-style">
+          <Card style={{ width: "50em" }} className="card-style">
             <Card.Body>
               <center>
-                <Form onSubmit={createAuctionEvent}>
+                <Form onSubmit={createProductEvent}>
                   <Form.Group as={Row}>
-                    &nbsp;&nbsp;&nbsp;
                     <Form.Label column sm="2">
                       Nombre:
                     </Form.Label>
-                    <Col sm="15">
+                    <Col sm="10">
                       <Form.Control
                         type="text"
                         placeholder="Nombre del producto"
@@ -78,12 +76,11 @@ const CreateNewProduct = () => {
                         required
                       />
                     </Col>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Form.Label column sm="3">
+                    <Form.Label column sm="2">
                       Descripcion:
                     </Form.Label>
-                    <div className="mt-4" />
-                    <Col sm="60">
+
+                    <Col sm="10">
                       <Form.Control
                         type="text"
                         placeholder="Descripcion del producto"
@@ -91,11 +88,10 @@ const CreateNewProduct = () => {
                         required
                       />
                     </Col>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Form.Label column sm="3">
+                    <Form.Label column sm="2">
                       Precio Inicial:
                     </Form.Label>
-                    <Col sm="15">
+                    <Col sm="10">
                       <Form.Control
                         type="number"
                         placeholder="Precio inicial del producto"
@@ -103,7 +99,6 @@ const CreateNewProduct = () => {
                         required
                       />
                     </Col>
-                    <input type="file" id="filechooser"></input>
                   </Form.Group>
                   <Button type="submit">Crear Nuevo Producto</Button>
                 </Form>
