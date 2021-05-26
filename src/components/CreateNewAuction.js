@@ -52,6 +52,7 @@ const CreateNewAuction = () => {
   return (
     <>
       <NavigationBar />
+      <center><h1 class="display-5">Crear Subasta</h1></center>
       <Container fluid>
         <div className="mt-4" />
         <Row className="justify-content-center">
