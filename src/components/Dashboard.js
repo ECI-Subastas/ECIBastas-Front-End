@@ -64,6 +64,7 @@ export default function Dashboard() {
                   subastaId={publication.subastaId}
                   name={publication.name}
                   creator={publication.creator}
+                  isActive={publication.isActive}
                 ></Auction>
               );
             }

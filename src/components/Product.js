@@ -3,7 +3,7 @@ import { getNicknameByUserId, getUserByEmail } from "../services/UserAPI";
 import { Card, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
-import "../css/Card.css"
+import "../css/Card.css";
 
 const Product = (props) => {
   const creditRef = useRef();
@@ -15,44 +15,58 @@ const Product = (props) => {
   const userId = localStorage.getItem("userId");
   const auctionCreator = localStorage.getItem("creator");
   const [user, setUser] = useState({});
-  const [nickname, setNickname] = useState("")
- 
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(function () {
     getUserByEmail(email).then((res) => {
       setUser(res);
     });
+
+    axios
+      .get(
+        `https://ecibastas-app.herokuapp.com/subasta/isActive?subastaid=${props.subasta}`
+      )
+      .then((res) => setIsActive(res.data));
   });
-  
+
   const enterToPujarEvent = async () => {
     try {
-      if (props.owner == userId) {
-        swal({
-          title: "Error al Pujar",
-          icon: "error",
-          text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
-          timer: "5000",
-        });
-      } else if (auctionCreator === userId) {
-        swal({
-          title: "Error al Pujar",
-          icon: "error",
-          text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
-          timer: "5000",
-        });
-      } else if (5 + Number(precio) > user.credit) {
+      if (isActive != false) {
+        if (props.owner == userId) {
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
+            timer: "5000",
+          });
+        } else if (auctionCreator === userId) {
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
+            timer: "5000",
+          });
+        } else if (5 + Number(precio) > user.credit) {
+          swal({
+            title: "Pujar",
+            icon: "error",
+            text: "Error, creditos insuficientes",
+            timer: "5000",
+          });
+        } else {
+          setError("");
+          setLoading(true);
+          axios.put(
+            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${id}&credits=5&userid=${userId}`
+          );
+        }
+      } else {
         swal({
           title: "Pujar",
           icon: "error",
-          text: "Error, creditos insuficientes",
+          text: "Error, La subasta fue desactiva, ya no puedes seguir pujando.",
           timer: "5000",
         });
-      } else {
-        setError("");
-        setLoading(true);
-        axios.put(
-          `https://ecibastas-app.herokuapp.com/product/pujar?productid=${id}&credits=5&userid=${userId}`
-        );
       }
     } catch (error) {
       setError("Error during user register.");
@@ -68,43 +82,53 @@ const Product = (props) => {
       setError("");
       setLoading(true);
 
-      if (credits > 0) {
-        if (props.owner == userId) {
-          swal({
-            title: "Error al Pujar",
-            icon: "error",
-            text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
-            timer: "5000",
-          });
-        } else if (auctionCreator === userId) {
-          swal({
-            title: "Error al Pujar",
-            icon: "error",
-            text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
-            timer: "5000",
-          });
-        } else if (Number(credits) + Number(precio) > Number(user.credit)) {
-          swal({
-            title: "Pujar",
-            icon: "error",
-            text: "Error, creditos insuficientes",
-            timer: "5000",
-          });
+      if (isActive != false) {
+        if (credits > 0) {
+          if (props.owner == userId) {
+            swal({
+              title: "Error al Pujar",
+              icon: "error",
+              text: "Ya eres el que mas ha pujado por este producto. DEJA DE PUJAR!!!",
+              timer: "5000",
+            });
+          } else if (auctionCreator === userId) {
+            swal({
+              title: "Error al Pujar",
+              icon: "error",
+              text: "Eres el dueño de la subasta. NO PUEDES PUJAR!!!",
+              timer: "5000",
+            });
+          } else if (Number(credits) + Number(precio) > Number(user.credit)) {
+            swal({
+              title: "Pujar",
+              icon: "error",
+              text: "Error, creditos insuficientes",
+              timer: "5000",
+            });
+          } else {
+            setError("");
+            setLoading(true);
+            axios.put(
+              `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=${credits}&userid=${userId}`
+            );
+          }
         } else {
-          setError("");
-          setLoading(true);
-          axios.put(
-            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=${credits}&userid=${userId}`
-          );
+          swal({
+            title: "Error al Pujar",
+            icon: "error",
+            text: "Error, El valor introducido es incorrecto.",
+            timer: "5000",
+          });
         }
       } else {
         swal({
-          title: "Error al Pujar",
+          title: "Pujar",
           icon: "error",
-          text: "Error, El valor introducido es incorrecto.",
+          text: "Error, La subasta fue desactiva, ya no puedes seguir pujando.",
           timer: "5000",
         });
       }
+
       setLoading(false);
     } catch (error) {
       setError("A ocurrido un error realizando una puja personalizada.");
