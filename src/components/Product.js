@@ -94,7 +94,7 @@ const Product = (props) => {
           setError("");
           setLoading(true);
           axios.put(
-            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=5&userid=${userId}`
+            `https://ecibastas-app.herokuapp.com/product/pujar?productid=${props.productid}&credits=${credits}&userid=${userId}`
           );
         }
       } else {
