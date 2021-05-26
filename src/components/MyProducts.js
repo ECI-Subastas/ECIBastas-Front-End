@@ -4,6 +4,7 @@ import "../css/Card.css"
 
 const MyProducts = (props) => {
   return (
+    
     <Card className="card-style">
       <Card.Body>
         <Card.Title>NAME: {props.name}</Card.Title>

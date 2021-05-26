@@ -17,6 +17,7 @@ const MyProductsDashboard = () => {
   return (
     <>
       <NavigationBar />
+      <center><h1 class="display-5">Mis Productos</h1></center>
       <Container fluid="md">
         <div className="mt-4" />
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
