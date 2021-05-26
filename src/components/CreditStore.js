@@ -56,6 +56,7 @@ const CreditStore = () => {
   return (
     <>
       <NavigationBar />
+      <center><h1 class="display-5">Comprar Creditos</h1></center>
       <Container fluid>
         <div className="mt-4" />
         <Row className="justify-content-center">

@@ -54,6 +54,7 @@ export default function Dashboard() {
     <>
       <NavigationBar />
       <div class="mt-4" />
+      <center><h1 class="display-5">Subastas Activas</h1></center>
       <Container fluid="md">
         <Row className="justify-content-center" lg={5} md={5} sm={3} xs={2}>
           {publications.map((publication) => {
